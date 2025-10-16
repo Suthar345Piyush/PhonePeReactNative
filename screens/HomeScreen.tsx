@@ -124,7 +124,7 @@ const HomeScreen = () => {
 
      {/* loans and insurance part  */}
 
-
+   
 
         </ScrollView>
   );
