@@ -1,13 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import AlertScreen from '@/screens/AlertScreen'
 
-const AlertStack = () => {
+const MobileNumberScreen = () => {
   return (
-   <AlertScreen />
+    <View>
+      <Text>MobileNumberScreen</Text>
+    </View>
   )
 }
 
-export default AlertStack
+export default MobileNumberScreen
 
 const styles = StyleSheet.create({})

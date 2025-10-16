@@ -1,13 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import AlertScreen from '@/screens/AlertScreen'
 
-const AlertStack = () => {
+const ToBankScreen = () => {
   return (
-   <AlertScreen />
+    <View>
+      <Text>ToBankScreen</Text>
+    </View>
   )
 }
 
-export default AlertStack
+export default ToBankScreen
 
 const styles = StyleSheet.create({})

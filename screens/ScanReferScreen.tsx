@@ -1,13 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import AlertScreen from '@/screens/AlertScreen'
 
-const AlertStack = () => {
+const ScanReferScreen = () => {
   return (
-   <AlertScreen />
+    <View>
+      <Text>ScanReferScreen</Text>
+    </View>
   )
 }
 
-export default AlertStack
+export default ScanReferScreen
 
 const styles = StyleSheet.create({})

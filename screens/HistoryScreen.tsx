@@ -1,13 +1,14 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import AlertScreen from '@/screens/AlertScreen'
 
-const AlertStack = () => {
+const HistoryScreen = () => {
   return (
-   <AlertScreen />
+    <View>
+      <Text>This is History screen</Text>
+    </View>
   )
 }
 
-export default AlertStack
+export default HistoryScreen
 
 const styles = StyleSheet.create({})
