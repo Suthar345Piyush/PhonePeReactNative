@@ -1,12 +1,12 @@
 import { ImageBackground, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import herobanner from "../assets/images/herobanner.png";
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { SimpleLineIcons } from '@expo/vector-icons';
+
 
 
 const HomeScreen = () => {
   return (
+    <ScrollView className='flex-1 bg-black'>
        <ImageBackground 
            source={herobanner}
             className="w-full h-96 justify-center items-center"
@@ -42,6 +42,91 @@ const HomeScreen = () => {
               </TouchableOpacity>
             </View>
           </ImageBackground>
+
+
+          {/* next part of the screen  */}
+
+          <View className="flex-1 bg-black px-4 pt-6">
+             <Text className='text-white font-bold text-xl mb-4'>Money Transfers</Text>
+             <View className='flex-row justify-around mb-6'>
+               <TouchableOpacity className='items-center'>
+                   <View className='w-16 h-16 bg-purple-700 rounded-full justify-center items-center mb-2'>
+                    <Text className='text-white text-3xl'>📞</Text>
+                   </View>
+                   <Text className='text-white text-xs text-center'>To Mobile{'\n'}Number</Text>
+               </TouchableOpacity>
+
+               <TouchableOpacity className='items-center'>
+                 <View className='w-16 h-16 bg-purple-700 rounded-full justify-center items-center mb-2'>
+                   <Text className='text-white text-3xl'>🏦</Text>
+                 </View>
+                 <Text className='text-xs text-white text-center'>To Bank &{'\n'}Self A/c</Text>
+               </TouchableOpacity>
+
+               <TouchableOpacity className='items-center'>
+                 <View className='w-16 h-16 bg-purple-700 rounded-full justify-center items-center mb-2'>
+                   <Text className='text-white text-3xl'>📢</Text>
+                 </View>
+                 <Text className='text-xs text-white text-center'>Refer & Get{'\n'}₹200</Text>
+               </TouchableOpacity>
+
+               <TouchableOpacity className='items-center'>
+                   <View className='w-16 h-16 bg-purple-700 rounded-full justify-center items-center mb-2'>
+                    <Text className='text-white text-3xl'>₹</Text>
+                   </View>
+                   <Text className='text-xs text-white text-center'>Check{'\n'}Balance</Text>
+               </TouchableOpacity>
+             </View>
+          </View>
+
+
+
+          {/* recharge and bills part  */}
+      
+         <View className='bg-gray-900 rounded-3xl p-5 mb-6 mx-4 border border-gray-800'>
+
+           <View className='flex-row justify-between items-center mb-6'>
+            <Text className='text-white text-lg font-semibold'>Recharge & Bills</Text>
+            <Text className='text-purple-400 text-sm font-medium'>View All</Text>
+           </View>
+ 
+           <View className='flex-row justify-around'>
+             <TouchableOpacity className='items-center'>
+                  <View className='w-16 h-16 bg-gray-800 rounded-full justify-center items-center mb-3'>
+                    <Text className='text-white text-2xl'>📱</Text>
+                  </View>
+                  <Text className='text-xs text-white text-center leading-4'>Mobile{'\n'}Recharge</Text>
+              </TouchableOpacity> 
+
+              <TouchableOpacity className='items-center'>
+                 <View className='w-16 h-16 bg-gray-800 rounded-full justify-center items-center mb-3'>
+                   <Text className='text-white text-2xl'>🚧</Text>
+                 </View>
+                 <Text className='text-xs text-white text-center leading-4'>FASTag{'\n'}Recharge</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity className='items-center'>
+                 <View className='w-16 h-16 bg-gray-800 rounded-full justify-center items-center mb-3'>
+                   <Text className='text-white text-2xl'>💡</Text>
+                 </View>
+                  <Text className='text-xs text-white text-center leading-4'>Electricity{'\n'}Bill</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity className='items-center'>
+                 <View className='w-16 h-16 bg-gray-800 rounded-full justify-center items-center mb-3'>
+                   <Text className='text-white text-2xl'>💰</Text>
+                 </View>
+                  <Text className='text-xs text-white text-center leading-4'>Loan{'\n'}Repayment</Text>
+              </TouchableOpacity>
+           </View>
+        </View>
+
+
+     {/* loans and insurance part  */}
+
+
+
+        </ScrollView>
   );
 };
 
