@@ -83,10 +83,10 @@ const HomeScreen = () => {
 
           {/* recharge and bills part  */}
       
-         <View className='bg-gray-900 rounded-3xl p-5 mb-6 mx-4 border border-gray-800'>
+         <View className='bg-zinc-800 rounded-3xl p-5 mb-6 mx-4 border border-gray-800'>
 
            <View className='flex-row justify-between items-center mb-6'>
-            <Text className='text-white text-lg font-semibold'>Recharge & Bills</Text>
+            <Text className='text-white text-lg font-bold'>Recharge & Bills</Text>
             <Text className='text-purple-400 text-sm font-medium'>View All</Text>
            </View>
  
@@ -122,9 +122,49 @@ const HomeScreen = () => {
         </View>
 
 
+
+
+
+
+
      {/* loans and insurance part  */}
 
-   
+      {/* wrapping whole section in TouchableOpacity  */}
+
+      <View className='flex-row gap-4 px-4'>
+        <TouchableOpacity className='flex-1 bg-zinc-800 rounded-3xl p-5 h-32' activeOpacity={0.7}>
+            
+
+
+             <View>
+              <Text className='text-white text-lg font-bold mb-1'>Loans</Text>
+               <Text className='text=gray-400 text-sm text-white'>Personal, Gold{'\n'}and More</Text>
+             </View>
+
+
+             <View className='absolute bottom-4 right-4'>
+               <View className='w-12 h-12 bg-purple-500/20 rounded-full'/>
+             </View>
+        </TouchableOpacity>
+
+
+        <TouchableOpacity className='flex-1 bg-zinc-800 rounded-3xl p-5 h-32' activeOpacity={0.7}> 
+                  <View>
+                    <Text className='text-white text-lg font-bold mb-1'>
+                       Insurance
+                    </Text>
+                    <View className='bg-purple-600 self-start px-3 py-1 rounded-3xl mt-1'>
+                      <Text className='text-white text-xs font-medium'>
+                         Offer
+                      </Text>
+                    </View>
+                  </View>
+
+                  <View className='absolute bottom-4 right-4'>
+                     <View className='w-12 h-12 bg-orange-500/20 rounded-3xl'/>
+                  </View>
+        </TouchableOpacity>
+      </View>
 
         </ScrollView>
   );
