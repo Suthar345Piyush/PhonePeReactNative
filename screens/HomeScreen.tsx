@@ -122,11 +122,6 @@ const HomeScreen = () => {
         </View>
 
 
-
-
-
-
-
      {/* loans and insurance part  */}
 
       {/* wrapping whole section in TouchableOpacity  */}
