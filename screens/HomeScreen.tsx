@@ -1,10 +1,78 @@
-import { ImageBackground, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import { ImageBackground, ScrollView, StyleSheet, Text, TouchableOpacity, View , FlatList , Dimensions } from 'react-native'
+import React , {useRef , useState} from 'react' 
 import herobanner from "../assets/images/herobanner.png";
 
-
+const {width} = Dimensions.get("window");
 
 const HomeScreen = () => {
+  const [activeSlide , setActiveSlide] = useState(0);
+
+  const promoCards = [
+    { id: '1', title: 'Mutual Funds', subtitle: 'SIPs & Investments', emoji: '📊', color: 'bg-gray-700' },
+    { id: '2', title: 'Hotels Sale', subtitle: 'Book Hotels', emoji: '✈️', color: 'bg-blue-700' },
+    { id: '3', title: 'Travel', subtitle: 'Flights & More', emoji: '🏖️', color: 'bg-green-700' },
+  ];
+
+  const sliderBanners = [
+    { id: '1', title: 'Stay connected 24x7', subtitle: 'Recharge with popular data packs', color: 'bg-green-700', logos: ['Jio', 'Airtel'] },
+    { id: '2', title: 'Pay Bills Instantly', subtitle: 'Electricity, Water & More', color: 'bg-blue-700', logos: ['💡', '💧'] },
+    { id: '3', title: 'Book & Save', subtitle: 'Travel deals for you', color: 'bg-purple-700', logos: ['✈️', '🏨'] },
+  ];
+
+
+  const onSliderScroll = (event : any) => {
+     const slideSize = event.nativeEvent.layoutMeasurement.width;
+     const offset = event.nativeEvent.contentOffset.x;
+     const activeIndex = Math.round(offset / slideSize);
+     setActiveSlide(activeIndex);
+  };
+
+  const renderPromoCard = ({item}: {item : typeof promoCards[0]}) => (
+     <TouchableOpacity className='{`${item.color} rounded-3xl p-5 mr-4 w-48 h-24`}' activeOpacity={0.7} >
+       <View>
+        <Text className='text-white text-base font-bold mb-1'>{item.title}</Text>
+        <Text className='text-gray-300 text-xs'>{item.subtitle}/</Text>
+       </View>
+       <View className='absolute bottom-4 right-4'>
+        <Text className='text-3xl'>{item.emoji}</Text>
+       </View>
+
+      {item.title == 'Hotels Sale' && (
+         <View className='absolute top-2 right-2 bg-purple-600 px-2 py-1 rounded-full'>
+          <Text className='text-white text-xs font-medium'>Sale</Text>
+         </View>
+      )}
+     </TouchableOpacity>
+  );
+
+  const renderSliderBanner = ({item} : any) => (
+    <View className={`${item.color} rounded-3xl p-5 mr-4 n-24`} style={{width : width - 32}}>
+      <View className='flex-row justify-between items-center'>
+        <View className='flex-1'>
+           <Text className='text-white text-lg font-bold mb-1'>{item.title}</Text>
+           <Text className='text-white/90 text-sm'>{item.subtitle}</Text>
+        </View>
+
+        <View className='flex-row item-center gap-2'>
+          {item.logos.map((logo : any, index : any) => {
+             <View key={index} className='bg-white rounded-full w-12 h-12 justify-center items-center'>
+               <Text className='text-2xl'>{logo}</Text>
+             </View>
+          })}
+        </View>
+      </View>
+    </View>
+  );
+
+
+  const renderDotIndicators = () => (
+     <View className='flex-row justify-center items-center mt-3'>
+       {sliderBanners.map((_ , index) => (
+         <View key={index} className={`h-2 rounded-full mx-1 ${index === activeSlide ? 'w-6 bg-white' : 'w-2 bg-gray-600'}`}/>
+       ))}       
+     </View>
+  );
+
   return (
     <ScrollView className='flex-1 bg-black'>
        <ImageBackground 
@@ -84,7 +152,6 @@ const HomeScreen = () => {
           {/* recharge and bills part  */}
       
          <View className='bg-zinc-800 rounded-3xl p-5 mb-6 mx-4 border border-gray-800'>
-
            <View className='flex-row justify-between items-center mb-6'>
             <Text className='text-white text-lg font-bold'>Recharge & Bills</Text>
             <Text className='text-purple-400 text-sm font-medium'>View All</Text>
@@ -128,20 +195,16 @@ const HomeScreen = () => {
 
       <View className='flex-row gap-4 px-4'>
         <TouchableOpacity className='flex-1 bg-zinc-800 rounded-3xl p-5 h-32' activeOpacity={0.7}>
-            
-
-
              <View>
               <Text className='text-white text-lg font-bold mb-1'>Loans</Text>
                <Text className='text=gray-400 text-sm text-white'>Personal, Gold{'\n'}and More</Text>
              </View>
-
-
              <View className='absolute bottom-4 right-4'>
-               <View className='w-12 h-12 bg-purple-500/20 rounded-full'/>
+               <View className='w-12 h-12 bg-purple-500/20 rounded-full'>
+                 <Text className='text-4xl pt-2 pl-1'>💰</Text>
+               </View>
              </View>
         </TouchableOpacity>
-
 
         <TouchableOpacity className='flex-1 bg-zinc-800 rounded-3xl p-5 h-32' activeOpacity={0.7}> 
                   <View>
@@ -154,14 +217,59 @@ const HomeScreen = () => {
                       </Text>
                     </View>
                   </View>
-
                   <View className='absolute bottom-4 right-4'>
-                     <View className='w-12 h-12 bg-orange-500/20 rounded-3xl'/>
+                     <View className='w-12 h-12 bg-orange-500/20 rounded-3xl'>
+                      <Text className='text-4xl pl-1 pb-2'>🚗</Text>
+                     </View>
                   </View>
         </TouchableOpacity>
-      </View>
+        </View>
 
-        </ScrollView>
+
+        
+          {/* swipeable promotional cards  */}
+
+    <View className='mb-6'>
+      <FlatList 
+          data={promoCards}
+          renderItem={renderPromoCard}
+          keyExtractor={item => item.id}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{paddingHorizontal : 16}}
+          snapToInterval={200}
+          decelerationRate="fast"
+          />
+   </View>
+       
+   {/* swipeable slider banner */}
+
+   <View>
+     <FlatList 
+        data={sliderBanners}
+        renderItem={renderSliderBanner}
+        keyExtractor={item => item.id}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={{paddingHorizontal : 16}}
+        snapToInterval={width - 16}
+        decelerationRate="fast"
+        onScroll={onSliderScroll}
+        pagingEnabled
+       />
+       {renderDotIndicators()}
+   </View>
+    
+
+
+
+
+
+    </ScrollView>
+
+
+
+  
   );
 };
 
